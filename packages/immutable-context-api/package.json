@@ -1,0 +1,19 @@
+{
+  "name": "immutable-context-api",
+  "version": "1.0.0",
+  "description": "Immutable context API package.",
+  "main": "./dist/server",
+  "scripts": {
+    "compile": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/odeadglaz/immutable-context.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/odeadglaz/immutable-context/issues"
+  },
+  "homepage": "https://github.com/odeadglaz/immutable-context#readme"
+}

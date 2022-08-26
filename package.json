@@ -1,0 +1,32 @@
+{
+  "name": "immutable-context",
+  "version": "1.0.0",
+  "description": "Expose immutable data for isomorphic micro-frontend.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/odeadglaz/immutable-context.git"
+  },
+  "author": "odedglaz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/odeadglaz/immutable-context/issues"
+  },
+  "homepage": "https://github.com/odeadglaz/immutable-context#readme",
+  "workspaces": [
+    "packages/*"
+  ],
+  "devDependencies": {
+    "nodemon": "^2.0.19",
+    "ts-node": "^10.9.1",
+    "tsc-watch": "^5.0.3",
+    "typescript": "^4.8.2"
+  },
+  "dependencies": {
+    "@types/node": "^18.7.13"
+  }
+}
