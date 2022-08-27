@@ -1,9 +1,14 @@
 {
   "extends": "../../tsconfig.json",
+  "exclude": [
+    "./src/server"
+  ],
   "include": [
     "./src"
   ],
   "compilerOptions": {
-    "outDir": "dist"
+    "outDir": "dist",
+    "module": "ES2020",
+    "moduleResolution": "Node"
   }
 }

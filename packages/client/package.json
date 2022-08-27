@@ -5,12 +5,13 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && npm run build:server && npm run build:client",
+    "build": "npm run build:server && npm run build:client",
     "build:client": "vite build --outDir dist/client",
     "build:server": "vite build --outDir dist/server --ssr src/App.tsx",
     "preview": "vite preview"
   },
   "dependencies": {
+    "immutable-context-api": "*",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

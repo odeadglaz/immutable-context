@@ -3,18 +3,31 @@ import path from 'path';
 import express from 'express';
 import React from 'react';
 import ReactDOM from 'react-dom/server';
+import * as immutableContextAPI from 'immutable-context-api';
+
+const immutableContextStub = {
+    url: 'https://www.google.com',
+    userAgent: 'UserAgent',
+    country: 'ISR',
+    uid: 'uid'
+};
 
 const renderHandler = async (req, res) => {
     const serverApp = (await import('../../client/dist/server/App.js')).default;
     const clientTemplate = fs.readFileSync(path.resolve('../client/dist/client/index.html'), 'utf-8')
 
-    const appMarkup = ReactDOM.renderToString(
-        React.createElement(serverApp, {})
-    );
+    immutableContextAPI.expose(() => {
+        const appMarkup = ReactDOM.renderToString(
+            React.createElement(serverApp, {})
+        );
 
-    const document = clientTemplate.replace('<!--ssr-outlet-->', appMarkup);
+        const document = clientTemplate
+            .replace('<!--ssr-outlet-->', appMarkup)
+            .replace('<!--scripts-outlet-->', immutableContextAPI.markup());
 
-    res.set('Content-Type', 'text/html').end(document);
+        res.set('Content-Type', 'text/html').end(document);
+
+    }, immutableContextStub);
 };
 
 const app = express();
