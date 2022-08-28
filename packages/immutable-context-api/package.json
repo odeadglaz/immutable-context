@@ -12,7 +12,9 @@
   },
   "typesVersions": {
     "*": {
-      "server": ["dist/node-server/server"]
+      "server": [
+        "dist/node-server/server"
+      ]
     }
   },
   "scripts": {
@@ -29,5 +31,8 @@
   "bugs": {
     "url": "https://github.com/odeadglaz/immutable-context/issues"
   },
-  "homepage": "https://github.com/odeadglaz/immutable-context#readme"
+  "homepage": "https://github.com/odeadglaz/immutable-context#readme",
+  "devDependencies": {
+    "@types/ua-parser-js": "^0.7.36"
+  }
 }

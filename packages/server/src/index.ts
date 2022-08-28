@@ -1,20 +1,28 @@
 import fs from 'fs';
-import path from 'path';
 import express from 'express';
 import React from 'react';
 import ReactDOM from 'react-dom/server';
+import uaParser from 'ua-parser-js';
 import * as immutableContextAPI from '@immutable/api/server';
+import { paths } from './constants.js';
 
-const immutableContextStub = {
-    url: 'https://www.google.com',
-    userAgent: 'UserAgent',
-    country: 'ISR',
-    uid: 'uid'
-};
+const createImmutableContext = (req: express.Request) => {
+    const url = req.originalUrl;
+    const userAgent = uaParser(req.headers['user-agent']);
+    const isTouch = ['tablet', 'mobile'].some((type) => userAgent.device?.type === type);
+
+    return {
+        url,
+        userAgent,
+        isTouch,
+        uid: Date.now().toString(),
+        country: 'ISR'
+    }
+}
 
 const renderHandler = async (req, res) => {
-    const serverApp = (await import('../../main-app/dist/server/App.js')).default;
-    const clientTemplate = fs.readFileSync(path.resolve('../main-app/dist/client/index.html'), 'utf-8')
+    const serverApp = (await import(paths.ssrBundle)).default;
+    const clientTemplate = fs.readFileSync(paths.template, 'utf-8')
 
     immutableContextAPI.expose(() => {
         const appMarkup = ReactDOM.renderToString(
@@ -27,21 +35,24 @@ const renderHandler = async (req, res) => {
 
         res.set('Content-Type', 'text/html').end(document);
 
-    }, immutableContextStub);
+    }, createImmutableContext(req));
 };
 
-const app = express();
+const registerApp = () => {
+    const app = express();
 
-app.set('port', 1337);
+    app.set('port', 1337);
 
-const router = express.Router();
-router.get('/page', renderHandler);
+    const router = express.Router();
 
-const staticPath = path.resolve(process.cwd(), '..', 'main-app', 'dist', 'client', 'assets');
-console.log('stat', staticPath);
-app.use('/assets', express.static(staticPath));
-app.use(router);
+    router.get('/page', renderHandler);
 
-app.listen(app.get('port'), () => {
-    console.log('info', `Server listening on port ${app.get('port')}...`)
-});
+    app.use('/assets', express.static(paths.staticAssets));
+    app.use(router);
+
+    app.listen(app.get('port'), () => {
+        console.log('info', `Server listening on port ${app.get('port')}...`)
+    });
+};
+
+registerApp();

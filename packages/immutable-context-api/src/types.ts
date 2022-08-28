@@ -1,6 +1,9 @@
+import { IResult } from 'ua-parser-js';
+
 export interface ImmutableContext {
     url: string;
-    userAgent: string;
+    userAgent: IResult;
+    isTouch: boolean;
     country: string;
     userId?: number;
     uid: string;
