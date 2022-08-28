@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import * as API from 'immutable-context-api/api';
+import * as API from '@immutable/api';
 import reactLogo from './assets/react.svg';
 import './App.css';
 

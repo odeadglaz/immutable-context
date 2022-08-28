@@ -1,17 +1,24 @@
 {
-  "name": "immutable-context-api",
+  "name": "@immutable/api",
   "version": "1.0.0",
   "description": "Immutable context API package.",
-  "main": "./dist/node-server/server",
+  "main": "./dist/api/node/index.js",
   "exports": {
-    ".": "./dist/node-server/server/index.js",
-    "./api": {
+    ".": {
       "browser": "./dist/api/browser/index.js",
       "node": "./dist/api/node/index.js"
+    },
+    "./server": "./dist/node-server/server/index.js"
+  },
+  "typesVersions": {
+    "*": {
+      "server": ["dist/node-server/server"]
     }
   },
   "scripts": {
-    "compile": "tsc --project tsconfig.json && tsc --project tsconfig.node.json"
+    "build": "npm run build:api && npm run build:server",
+    "build:api": "tsc --project tsconfig.json",
+    "build:server": "tsc --project tsconfig.node.json"
   },
   "repository": {
     "type": "git",
