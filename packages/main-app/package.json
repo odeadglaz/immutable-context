@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npm run build:server && npm run build:client",
+    "build": "tsc && npm run build:server && npm run build:client",
     "build:client": "vite build --outDir dist/client",
     "build:server": "vite build --outDir dist/server --ssr src/page/App.tsx",
     "preview": "vite preview"

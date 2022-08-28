@@ -1,11 +1,16 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import * as API from '@immutable/api';
 import reactLogo from '../assets/react.svg';
+import utils from '../utils';
 import './App.css';
 
 function App() {
     const [count, setCount] = useState(0)
     console.log('Con', API.getImmutableContext());
+
+    useEffect(() => {
+        utils.reportEvent('app_mounted');
+    }, [])
 
     return (
         <div className="App">
