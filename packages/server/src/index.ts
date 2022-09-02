@@ -1,4 +1,5 @@
 import fs from 'fs';
+import open from 'open';
 import express from 'express';
 import React from 'react';
 import ReactDOM from 'react-dom/server';
@@ -52,6 +53,7 @@ const registerApp = () => {
 
     app.listen(app.get('port'), () => {
         console.log('info', `Server listening on port ${app.get('port')}...`)
+        open(`http://localhost:${app.get('port')}/page`);
     });
 };
 

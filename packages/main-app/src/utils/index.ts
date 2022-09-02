@@ -1,10 +1,5 @@
 import { getImmutableContext } from '@immutable/api';
 
-const dummyReportCall = (data: unknown) => new Promise((resolve) => setTimeout(() => {
-    console.log('Reported', data);
-    resolve(data);
-}, 1000));
-
 export default {
     reportEvent: (eventName: string) => {
         let { url, isTouch, userAgent } = getImmutableContext();
@@ -19,3 +14,7 @@ export default {
         return dummyReportCall(reportData);
     }
 }
+
+const dummyReportCall = (data: unknown) => new Promise((resolve) => setTimeout(() => {
+    resolve(data);
+}, 1000));

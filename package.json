@@ -5,7 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "npm run build -w packages/ && npm run start -w @immutable/server"
+    "dev": "npm run build -w packages/ && npm run server",
+    "server": "npm run watch -w @immutable/server"
   },
   "repository": {
     "type": "git",
@@ -27,6 +28,7 @@
     "typescript": "^4.8.2"
   },
   "dependencies": {
-    "@types/node": "^18.7.13"
+    "@types/node": "^18.7.13",
+    "open": "^8.4.0"
   }
 }
