@@ -5,6 +5,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/server';
 import uaParser from 'ua-parser-js';
 import * as immutableContextAPI from '@immutable/api/server';
+import { anotherMiddleware } from './anotherMiddleware.js';
 import { paths } from './constants.js';
 
 const createImmutableContext = (req: express.Request) => {
@@ -21,22 +22,23 @@ const createImmutableContext = (req: express.Request) => {
     }
 }
 
-const renderHandler = async (req, res) => {
+const exposeImmutableContext = (req: express.Request, res: express.Response, next: express.NextFunction) => {
+    immutableContextAPI.expose(next, createImmutableContext(req));
+}
+
+const renderHandler = async (req: express.Request, res: express.Response) => {
     const serverApp = (await import(paths.ssrBundle)).default;
     const clientTemplate = fs.readFileSync(paths.template, 'utf-8')
 
-    immutableContextAPI.expose(() => {
-        const appMarkup = ReactDOM.renderToString(
-            React.createElement(serverApp, {})
-        );
+    const appMarkup = ReactDOM.renderToString(
+        React.createElement(serverApp, {})
+    );
 
-        const document = clientTemplate
-            .replace('<!--ssr-outlet-->', appMarkup)
-            .replace('<!--scripts-outlet-->', immutableContextAPI.markup());
+    const document = clientTemplate
+        .replace('<!--ssr-outlet-->', appMarkup)
+        .replace('<!--scripts-outlet-->', immutableContextAPI.markup());
 
-        res.set('Content-Type', 'text/html').end(document);
-
-    }, createImmutableContext(req));
+    res.set('Content-Type', 'text/html').end(document);
 };
 
 const registerApp = () => {
@@ -46,7 +48,7 @@ const registerApp = () => {
 
     const router = express.Router();
 
-    router.get('/page', renderHandler);
+    router.get('/page', exposeImmutableContext, anotherMiddleware, renderHandler);
 
     app.use('/assets', express.static(paths.staticAssets));
     app.use(router);
