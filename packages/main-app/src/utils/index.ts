@@ -1,10 +1,9 @@
-import { getImmutableContext } from '@immutable/api';
-import * as API from '@immutable/api';
+import { getImmutableData } from '@immutable/api';
 
 export default {
     reportEvent: (eventName: string) => {
-        console.log('Plain Javascript access:', API.getImmutableContext().isTouch);
-        let { url, isTouch, userAgent } = getImmutableContext();
+        console.log('Plain Javascript access:', getImmutableData().isTouch);
+        let { url, isTouch, userAgent } = getImmutableData();
 
         const reportData = {
             eventName,

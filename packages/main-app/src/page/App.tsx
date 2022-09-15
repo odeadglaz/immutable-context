@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
-import * as API from '@immutable/api';
+import { getImmutableData } from '@immutable/api';
 import reactLogo from '../assets/react.svg';
 import utils from '../utils';
 import './App.css';
 
 function App() {
     const [count, setCount] = useState(0)
-    console.log('React App access:', API.getImmutableContext().isTouch);
+    console.log('React App access:', getImmutableData().isTouch);
 
     useEffect(() => {
         utils.reportEvent('app_mounted');

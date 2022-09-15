@@ -6,7 +6,7 @@
   "exports": {
     ".": {
       "browser": "./dist/api/browser/index.js",
-      "node": "./dist/api/node/index.js"
+      "node": "./dist/api/node/__index.js"
     },
     "./server": "./dist/node-server/server/index.js"
   },

@@ -1,8 +1,8 @@
-import { storage, getImmutableContext } from '../api/node';
+import { storage, getImmutableData } from '../api/node/__index';
 import { BROWSER_KEY } from '../api/browser';
-import { ImmutableContext } from '../types';
+import { ImmutableData } from '../types';
 
-export const expose = (context: ImmutableContext, to: () => void) => (
+export const expose = (context: ImmutableData, to: () => void) => (
     storage.run(context, to)
 );
 
@@ -11,5 +11,5 @@ export const markup = () => `
 `;
 
 export {
-    getImmutableContext
+    getImmutableData
 };
