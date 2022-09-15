@@ -1,6 +1,5 @@
-import { storage } from '../api/node';
+import { storage, getImmutableContext } from '../api/node';
 import { BROWSER_KEY } from '../api/browser';
-import { getImmutableContext } from '../api/node';
 import { ImmutableContext } from '../types';
 
 export const expose = (to: () => void, context: ImmutableContext) => {
