@@ -22,8 +22,8 @@ const createImmutableContext = (req: express.Request) => {
     }
 }
 
-const exposeImmutableContext = (req: express.Request, res: express.Response, next: express.NextFunction) => {
-    immutableContextAPI.expose(next, createImmutableContext(req));
+const createStore = (req: express.Request, res: express.Response, next: express.NextFunction) => {
+    immutableContextAPI.expose(createImmutableContext(req), next);
 }
 
 const renderHandler = async (req: express.Request, res: express.Response) => {
@@ -48,7 +48,7 @@ const registerApp = () => {
 
     const router = express.Router();
 
-    router.get('/page', exposeImmutableContext, anotherMiddleware, renderHandler);
+    router.get('/page', createStore, anotherMiddleware, renderHandler);
 
     app.use('/assets', express.static(paths.staticAssets));
     app.use(router);
