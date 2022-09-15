@@ -6,7 +6,7 @@ import './App.css';
 
 function App() {
     const [count, setCount] = useState(0)
-    console.log('React App access:', API.getImmutableContext().userAgent);
+    console.log('React App access:', API.getImmutableContext().isTouch);
 
     useEffect(() => {
         utils.reportEvent('app_mounted');

@@ -1,9 +1,11 @@
 import { AsyncLocalStorage }  from 'async_hooks';
 import { ImmutableContext } from '../../types';
 
-global["__IMMUTABLE_CONTEXT_STORAGE"] ||= new AsyncLocalStorage<ImmutableContext>();
+const existingStore = global["__IMMUTABLE_CONTEXT_STORAGE"];
 
-export const storage = global["__IMMUTABLE_CONTEXT_STORAGE"] as AsyncLocalStorage<ImmutableContext>;
+export const storage = existingStore as AsyncLocalStorage<ImmutableContext> || new AsyncLocalStorage<ImmutableContext>();
+
+global["__IMMUTABLE_CONTEXT_STORAGE"] ||= storage;
 
 export const getImmutableContext = () => {
     const context = storage.getStore();
