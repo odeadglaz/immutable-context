@@ -5,7 +5,6 @@ import React from 'react';
 import ReactDOM from 'react-dom/server';
 import uaParser from 'ua-parser-js';
 import * as immutableContextAPI from '@immutable/api/server';
-import { anotherMiddleware } from './anotherMiddleware.js';
 import { paths } from './constants.js';
 
 const createImmutableContext = (req: express.Request) => {
@@ -48,7 +47,7 @@ const registerApp = () => {
 
     const router = express.Router();
 
-    router.get('/page', createStore, anotherMiddleware, renderHandler);
+    router.get('/page', createStore, renderHandler);
 
     app.use('/assets', express.static(paths.staticAssets));
     app.use(router);

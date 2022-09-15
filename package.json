@@ -1,6 +1,9 @@
 {
   "name": "immutable-context",
   "version": "1.0.0",
+  "workspaces": [
+    "packages/*"
+  ],
   "description": "Expose immutable data for isomorphic micro-frontend.",
   "main": "index.js",
   "type": "module",
@@ -18,9 +21,6 @@
     "url": "https://github.com/odeadglaz/immutable-context/issues"
   },
   "homepage": "https://github.com/odeadglaz/immutable-context#readme",
-  "workspaces": [
-    "packages/*"
-  ],
   "devDependencies": {
     "nodemon": "^2.0.19",
     "ts-node": "^10.9.1",
