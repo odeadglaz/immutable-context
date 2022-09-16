@@ -1,12 +1,12 @@
 {
   "name": "@immutable/api",
   "version": "1.0.0",
-  "description": "Immutable context API package.",
+  "description": "Immutable data API package.",
   "main": "./dist/api/node/index.js",
   "exports": {
     ".": {
       "browser": "./dist/api/browser/index.js",
-      "node": "./dist/api/node/__index.js"
+      "node": "./dist/api/node/index.js"
     },
     "./server": "./dist/node-server/server/index.js"
   },

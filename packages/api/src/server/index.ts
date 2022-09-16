@@ -1,4 +1,4 @@
-import { storage, getImmutableData } from '../api/node/__index';
+import { storage, getImmutableData } from '../api/node';
 import { BROWSER_KEY } from '../api/browser';
 import { ImmutableData } from '../types';
 
