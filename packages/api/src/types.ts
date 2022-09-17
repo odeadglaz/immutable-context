@@ -9,4 +9,4 @@ export interface ImmutableData {
     uid: string;
 }
 
-export type getImmutableContext = () => ImmutableData;
+export declare const getImmutableData: () => ImmutableData;

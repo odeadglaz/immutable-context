@@ -2,7 +2,7 @@ import { getImmutableData } from '@immutable/api';
 
 export default {
     reportEvent: (eventName: string) => {
-        console.log('Plain Javascript access:', getImmutableData().isTouch);
+        console.log('Plain Javascript access:', getImmutableData().url);
         let { url, isTouch, userAgent } = getImmutableData();
 
         const reportData = {

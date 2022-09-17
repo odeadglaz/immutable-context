@@ -9,6 +9,7 @@
   "compilerOptions": {
     "outDir": "dist",
     "module": "ES2020",
+    "composite": true,
     "moduleResolution": "Node"
   }
 }
