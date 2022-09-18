@@ -7,7 +7,7 @@ import uaParser from 'ua-parser-js';
 import * as immutableContextAPI from '@immutable/api/server';
 import { paths } from './constants.js';
 
-const createImmutableContext = (req: express.Request) => {
+const createImmutableData = (req: express.Request) => {
     const url = req.originalUrl;
     const userAgent = uaParser(req.headers['user-agent']);
     const isTouch = ['tablet', 'mobile'].some((type) => userAgent.device?.type === type);
@@ -22,8 +22,8 @@ const createImmutableContext = (req: express.Request) => {
 }
 
 const createStore = (req: express.Request, res: express.Response, next: express.NextFunction) => {
-    immutableContextAPI.expose(createImmutableContext(req), next);
-}
+    immutableContextAPI.expose(createImmutableData(req), next);
+};
 
 const renderHandler = async (req: express.Request, res: express.Response) => {
     const serverApp = (await import(paths.ssrBundle)).default;
