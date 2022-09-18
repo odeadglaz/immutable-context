@@ -8,7 +8,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "npm run build -w packages/ && npm run server",
+    "dev": "npm run build --workspaces && npm run server",
     "server": "npm run watch -w @immutable/server"
   },
   "repository": {
