@@ -10,13 +10,6 @@
     },
     "./server": "./dist/node-server/server/index.js"
   },
-  "typesVersions": {
-    "*": {
-      "server": [
-        "dist/node-server/server"
-      ]
-    }
-  },
   "scripts": {
     "build": "npm run build:api && npm run build:server",
     "build:api": "tsc --project tsconfig.json",
@@ -32,6 +25,13 @@
     "url": "https://github.com/odeadglaz/immutable-context/issues"
   },
   "homepage": "https://github.com/odeadglaz/immutable-context#readme",
+  "typesVersions": {
+    "*": {
+      "server": [
+        "dist/node-server/server"
+      ]
+    }
+  },
   "devDependencies": {
     "@types/ua-parser-js": "^0.7.36"
   }
