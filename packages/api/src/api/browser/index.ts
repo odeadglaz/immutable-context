@@ -7,5 +7,5 @@ export const getImmutableData = () => {
         throw new Error('ImmutableData does not exists, ensure to set your initial HTML the `markup` result.');
     }
 
-    return context;
+    return { ...context };
 };

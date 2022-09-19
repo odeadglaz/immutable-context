@@ -7,7 +7,7 @@ export const getImmutableData = () => {
         throw new Error('ImmutableData does not exists, ensure to call `expose` before accessing it.');
     }
 
-    return context;
+    return { ...context };
 };
 
 export {
